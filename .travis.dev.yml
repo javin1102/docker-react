@@ -1,0 +1,23 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t javin112/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true javin112/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "docker"
+  env: "Docker-env"
+  #travis will automatically copy the zip to s3 bucket aws
+  bucket_name: "elasticbeanstalk-ap-southeast-1-838483677982"
+  #create a folder "docker" in the bucket
+  bucket_path: "docker"
+  #only deploy to travis if some changes occur on master branch (github)
+  on:
+    branch: master
