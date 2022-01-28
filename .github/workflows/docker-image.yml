@@ -13,7 +13,13 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
-      - name: Test Code
+      - name: Set up Docker buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build docker
+        run: docker build -t javin112/docker-react -f Dockerfile.dev .
+
+      - name: Test suite
         run: docker run -e CI=true javin112/docker-react npm run test
 
       - name: Generate deployment package
