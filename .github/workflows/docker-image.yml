@@ -13,6 +13,9 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
+      - name: Test Code
+        run: docker run -e CI=true javin112/docker-react npm run test
+
       - name: Generate deployment package
         run: zip -r deploy.zip . -x ./
 
