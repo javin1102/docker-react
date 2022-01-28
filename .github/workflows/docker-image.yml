@@ -36,5 +36,3 @@ jobs:
           region: ap-southeast-1
           deployment_package: deploy.zip
           use_existing_version_if_available: true
-#Acces key id : AKIA4GOMFSMPAASQYZ7T
-#Secret access key: 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
